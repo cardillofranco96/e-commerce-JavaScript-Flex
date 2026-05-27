@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlamaGamer</title>
+
+    <!-- Tipografía Orbit -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/styles.css">
+
+    <!-- AOS (Animate on Scroll) -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Toastify -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+
+<body>
+
+    <!-- Hero decorative layers: gradient, abstract shapes and particle canvas -->
+    <div id="hero-decor" aria-hidden="true">
+        <div class="hero-gradient"></div>
+        <svg class="hero-blob" viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,100 C150,200 450,0 600,100 L600,00 L0,0 Z" fill="rgba(255,60,0,0.06)"></path>
+        </svg>
+        <div id="hero-particles" class="hero-particles" aria-hidden="true"></div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo-container">
+    <img src="./img/logo.png" alt="Flama Gamer Logo">
+    <h1>FlamaGamer</h1>
+</div>
+
+        <nav class="nav">
+            <ul>
+                <li><button class="filter-btn" data-categoria="todos">Todos</button></li>
+                <li><button class="filter-btn" data-categoria="procesadores">CPU</button></li>
+                <li><button class="filter-btn" data-categoria="gpu">GPU</button></li>
+                <li><button class="filter-btn" data-categoria="ram">RAM</button></li>
+                <li><button class="filter-btn" data-categoria="fuentes">Fuentes</button></li>
+                <li><button class="filter-btn" data-categoria="gabinetes">Gabinetes</button></li>
+            </ul>
+        </nav>
+        <div class="header-controls">
+            <select id="sort-select" aria-label="Ordenar productos">
+                <option value="default">Ordenar</option>
+                <option value="price-asc">Precio: menor a mayor</option>
+                <option value="price-desc">Precio: mayor a menor</option>
+                <option value="alpha">Alfabético</option>
+            </select>
+
+            <button id="open-favorites" aria-label="Ver favoritos">❤ Favoritos</button>
+
+            <button id="theme-toggle" aria-label="Cambiar tema RGB">RGB</button>
+        </div>
+
+        <button class="cart-icon" id="open-cart" aria-label="Abrir carrito">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 6H4V4h2v2zm0 0H20l-1.2 6.4a2 2 0 01-1.96 1.6H9.16" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="10" cy="20" r="1.5" fill="#ff3c00"/>
+                <circle cx="18" cy="20" r="1.5" fill="#ff3c00"/>
+            </svg>
+            <span id="cart-count">0</span>
+        </button>
+    </header>
+<div id="loader" class="loader">
+    <div class="spinner"></div>
+    <p>Cargando productos...</p>
+</div>
+    <!-- MAIN -->
+    <main>
+
+        <!-- BUSCADOR -->
+        <section class="search-section">
+            <input 
+                type="text" 
+                id="search-input" 
+                placeholder="Buscar componentes..."
+            >
+        </section>
+
+        <!-- PRODUCTOS -->
+        <section id="productos-container" class="productos-grid">
+            <!-- Render dinámico -->
+        </section>
+
+    </main>
+
+    <!-- SIDEBAR CARRITO -->
+    <aside id="cart-sidebar" class="cart-sidebar">
+
+        <h2>Carrito</h2>
+
+        <div id="cart-items">
+            <!-- Items dinámicos -->
+        </div>
+
+        <div class="cart-footer">
+            <div class="total-row"><span>Subtotal:</span><strong>$<span id="cart-subtotal">0</span></strong></div>
+            <div class="total-row"><span>Descuento:</span><strong>-$<span id="cart-discount">0</span></strong></div>
+            <div class="total-row"><span>Total:</span><strong>$<span id="cart-total">0</span></strong></div>
+
+            <div class="coupon-row" style="display:flex;gap:8px;margin:10px 0;">
+                <input id="coupon-input" placeholder="Código de cupón" style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:#fff">
+                <button id="apply-coupon" class="btn">Aplicar</button>
+            </div>
+
+            <button id="clear-cart">Vaciar carrito</button>
+            <button id="checkout-btn">Finalizar compra</button>
+        </div>
+
+    </aside>
+
+    <!-- OVERLAY -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- JS -->
+    <!-- Animation libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script type="module" src="./js/main.js"></script>
+
+</body>
+</html>

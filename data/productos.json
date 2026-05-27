@@ -1,0 +1,186 @@
+[
+  {
+    "id": 1,
+    "nombre": "INTEL CORE I7 14700K",
+    "categoria": "procesadores",
+    "precio": 280000,
+    "stock": 10,
+    "imagen": "./img/cpu1.jpg",
+    "descripcion": "Alto rendimiento multitarea y gaming"
+  },
+  {
+    "id": 2,
+    "nombre": "RYZEN 7 5800G",
+    "categoria": "procesadores",
+    "precio": 420000,
+    "stock": 8,
+    "imagen": "./img/cpu2.jpg",
+    "descripcion": "Ideal para gaming competitivo"
+  },
+  {
+    "id": 3,
+    "nombre": "INTEL CORE ULTRA 9 285K 5.7GHZ",
+    "categoria": "procesadores",
+    "precio": 390000,
+    "stock": 7,
+    "imagen": "./img/cpu3.jpg",
+    "descripcion": "Gaming y streaming profesional"
+  },
+  {
+    "id": 4,
+    "nombre": "RYZEN 9 9950X 5.7GHZ",
+    "categoria": "procesadores",
+    "precio": 310000,
+    "stock": 9,
+    "imagen": "./img/cpu4.jpg",
+    "descripcion": "Excelente precio rendimiento"
+  },
+
+  {
+    "id": 5,
+    "nombre": "NVIDIA GTX 1650",
+    "categoria": "gpu",
+    "precio": 550000,
+    "stock": 6,
+    "imagen": "./img/gpu1.jpg",
+    "descripcion": "1080p gaming simple"
+  },
+  {
+    "id": 6,
+    "nombre": "RTX 5090 GAMING TRIO",
+    "categoria": "gpu",
+    "precio": 520000,
+    "stock": 5,
+    "imagen": "./img/gpu2.jpg",
+    "descripcion": "1440p rendimiento sólido"
+  },
+  {
+    "id": 7,
+    "nombre": "RADEON RX 7600 8GB",
+    "categoria": "gpu",
+    "precio": 780000,
+    "stock": 4,
+    "imagen": "./img/gpu3.jpg",
+    "descripcion": "Gaming 1440p/4K"
+  },
+  {
+    "id": 8,
+    "nombre": "RADEON RX 9070 16GB",
+    "categoria": "gpu",
+    "precio": 480000,
+    "stock": 6,
+    "imagen": "./img/gpu4.jpg",
+    "descripcion": "Excelente para esports"
+  },
+
+  {
+    "id": 9,
+    "nombre": "RAM 16GB DDR4 3200MHz",
+    "categoria": "ram",
+    "precio": 90000,
+    "stock": 15,
+    "imagen": "./img/ram1.jpg",
+    "descripcion": "Gaming fluido"
+  },
+  {
+    "id": 10,
+    "nombre": "RAM 32GB DDR4 3600MHz",
+    "categoria": "ram",
+    "precio": 180000,
+    "stock": 10,
+    "imagen": "./img/ram2.jpg",
+    "descripcion": "Alta performance"
+  },
+  {
+    "id": 11,
+    "nombre": "RAM 16GB DDR5 5200MHz",
+    "categoria": "ram",
+    "precio": 130000,
+    "stock": 12,
+    "imagen": "./img/ram3.jpg",
+    "descripcion": "Nueva generación"
+  },
+  {
+    "id": 12,
+    "nombre": "RAM 8GB DDR4 3200MHz",
+    "categoria": "ram",
+    "precio": 45000,
+    "stock": 20,
+    "imagen": "./img/ram4.jpg",
+    "descripcion": "Básica para upgrades"
+  },
+
+  {
+    "id": 13,
+    "nombre": "Fuente 750W 80+ Bronze",
+    "categoria": "fuentes",
+    "precio": 110000,
+    "stock": 12,
+    "imagen": "./img/fuente1.jpg",
+    "descripcion": "Confiable para gaming"
+  },
+  {
+    "id": 14,
+    "nombre": "Fuente 650W ",
+    "categoria": "fuentes",
+    "precio": 135000,
+    "stock": 10,
+    "imagen": "./img/fuente2.jpg",
+    "descripcion": "Alta eficiencia"
+  },
+  {
+    "id": 15,
+    "nombre": "Fuente 850W ",
+    "categoria": "fuentes",
+    "precio": 180000,
+    "stock": 6,
+    "imagen": "./img/fuente3.jpg",
+    "descripcion": "Para builds exigentes"
+  },
+  {
+    "id": 16,
+    "nombre": "Fuente 500W 80+ black",
+    "categoria": "fuentes",
+    "precio": 80000,
+    "stock": 14,
+    "imagen": "./img/fuente4.jpg",
+    "descripcion": "Económica y funcional"
+  },
+
+  {
+    "id": 17,
+    "nombre": "Gabinete Mid Tower Xpg Starker",
+    "categoria": "gabinetes",
+    "precio": 95000,
+    "stock": 7,
+    "imagen": "./img/gab1.jpg",
+    "descripcion": "Panel vidrio templado"
+  },
+  {
+    "id": 18,
+    "nombre": "Gabinete Mid Tower",
+    "categoria": "gabinetes",
+    "precio": 85000,
+    "stock": 10,
+    "imagen": "./img/gab2.jpg",
+    "descripcion": "Espacio y ventilación"
+  },
+  {
+    "id": 19,
+    "nombre": "Gabinete Full Tower RGB",
+    "categoria": "gabinetes",
+    "precio": 140000,
+    "stock": 5,
+    "imagen": "./img/gab3.jpg",
+    "descripcion": "Setup premium"
+  },
+  {
+    "id": 20,
+    "nombre": "Gabinete Mini Tower",
+    "categoria": "gabinetes",
+    "precio": 70000,
+    "stock": 8,
+    "imagen": "./img/gab4.jpg",
+    "descripcion": "Ideal espacios chicos"
+  }
+]

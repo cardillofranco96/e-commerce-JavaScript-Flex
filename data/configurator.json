@@ -1,0 +1,200 @@
+{
+  "meta": {
+    "name": "FlamaGamer PC Configurator Data",
+    "version": "1.0",
+    "currency": "ARS",
+    "accentPalette": {
+      "primary": "#ff3c00",
+      "secondary": "#00e5ff",
+      "positive": "#28b463"
+    }
+  },
+
+  "components": [
+    {
+      "id": "cpu-001",
+      "category": "cpu",
+      "name": "Ryzen 7 5800G",
+      "price": 49999,
+      "stock": 8,
+      "specs": {
+        "socket": "AM4",
+        "tdp": 65,
+        "integratedGpu": true
+      },
+      "compatibility": {
+        "requiresSocket": ["AM4"]
+      }
+    },
+    {
+      "id": "cpu-002",
+      "category": "cpu",
+      "name": "Intel Core i5-12400F",
+      "price": 45999,
+      "stock": 5,
+      "specs": {
+        "socket": "LGA1700",
+        "tdp": 65,
+        "integratedGpu": false
+      },
+      "compatibility": {
+        "requiresSocket": ["LGA1700"]
+      }
+    },
+
+    {
+      "id": "mobo-001",
+      "category": "motherboard",
+      "name": "ASUS TUF GAMING X570",
+      "price": 34999,
+      "stock": 6,
+      "specs": {
+        "socket": "AM4",
+        "formFactor": "ATX",
+        "supportedRamType": "DDR4",
+        "maxRamSlots": 4
+      },
+      "compatibility": {
+        "supportsSockets": ["AM4"],
+        "requiresRamType": ["DDR4"]
+      }
+    },
+    {
+      "id": "mobo-002",
+      "category": "motherboard",
+      "name": "MSI PRO Z690-A",
+      "price": 38999,
+      "stock": 4,
+      "specs": {
+        "socket": "LGA1700",
+        "formFactor": "ATX",
+        "supportedRamType": "DDR5",
+        "maxRamSlots": 4
+      },
+      "compatibility": {
+        "supportsSockets": ["LGA1700"],
+        "requiresRamType": ["DDR5"]
+      }
+    },
+
+    {
+      "id": "ram-001",
+      "category": "ram",
+      "name": "Corsair Vengeance 16GB (2x8) DDR4 3200",
+      "price": 11999,
+      "stock": 12,
+      "specs": {
+        "type": "DDR4",
+        "modules": 2,
+        "perModuleGb": 8,
+        "speedMhz": 3200
+      },
+      "compatibility": {
+        "ramType": "DDR4"
+      }
+    },
+    {
+      "id": "ram-002",
+      "category": "ram",
+      "name": "G.Skill Ripjaws 32GB (2x16) DDR5 5200",
+      "price": 25999,
+      "stock": 6,
+      "specs": {
+        "type": "DDR5",
+        "modules": 2,
+        "perModuleGb": 16,
+        "speedMhz": 5200
+      },
+      "compatibility": {
+        "ramType": "DDR5"
+      }
+    },
+
+    {
+      "id": "gpu-001",
+      "category": "gpu",
+      "name": "NVIDIA RTX 4060 Ti 8GB",
+      "price": 74999,
+      "stock": 3,
+      "specs": {
+        "tdp": 160,
+        "lengthMm": 242
+      },
+      "compatibility": {}
+    },
+
+    {
+      "id": "storage-001",
+      "category": "storage",
+      "name": "Samsung 970 EVO Plus 1TB (NVMe)",
+      "price": 13999,
+      "stock": 10,
+      "specs": {
+        "type": "NVMe",
+        "capacityGb": 1000
+      }
+    },
+    {
+      "id": "psu-001",
+      "category": "psu",
+      "name": "Corsair RM650 650W 80+ Gold",
+      "price": 14999,
+      "stock": 7,
+      "specs": {
+        "wattage": 650
+      }
+    },
+    {
+      "id": "case-001",
+      "category": "case",
+      "name": "NZXT H510",
+      "price": 8999,
+      "stock": 5,
+      "specs": {
+        "formFactor": "ATX",
+        "maxGpuLengthMm": 381
+      }
+    },
+
+    {
+      "id": "cooler-001",
+      "category": "cooler",
+      "name": "Cooler Master Hyper 212",
+      "price": 4999,
+      "stock": 9,
+      "specs": {
+        "tdpRating": 150
+      }
+    }
+  ],
+
+  "presets": [
+    {
+      "id": "preset-gaming-1",
+      "name": "Gaming - Balance",
+      "components": ["cpu-001","mobo-001","ram-001","gpu-001","storage-001","psu-001","case-001","cooler-001"],
+      "discountPercent": 0
+    },
+    {
+      "id": "preset-budget-1",
+      "name": "Budget Build",
+      "components": ["cpu-002","mobo-002","ram-001","storage-001","psu-001","case-001"],
+      "discountPercent": 5
+    }
+  ],
+
+  "compatibilityRules": {
+    "socketMatch": {
+      "description": "CPU socket must match motherboard socket",
+      "check": ["cpu.specs.socket","motherboard.specs.socket"]
+    },
+    "ramTypeMatch": {
+      "description": "RAM type required by motherboard",
+      "check": ["ram.specs.type","motherboard.specs.supportedRamType"]
+    },
+    "psuWattage": {
+      "description": "PSU wattage must be >= estimated system wattage",
+      "estimationFormula": "sum(component.specs.tdp || 0) * 1.35"
+    }
+  }
+}

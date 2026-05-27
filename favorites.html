@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Favoritos - FlamaGamer</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo-container">
+      <img src="./img/logo.png" alt="Flama Gamer Logo">
+      <h1>Favoritos</h1>
+    </div>
+    <nav class="nav">
+      <a href="index.html" class="btn">Volver</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-controls" style="display:flex;gap:1rem;align-items:center;justify-content:flex-end;padding:1rem 2rem;">
+      <button id="clear-favs" class="btn" aria-label="Limpiar favoritos">Limpiar Favoritos</button>
+      <a href="index.html" class="btn" aria-label="Seguir comprando">Seguir comprando</a>
+    </section>
+
+    <section id="favorites-container" class="productos-grid" aria-live="polite"></section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    AOS.init({ duration: 600, once: true });
+
+    async function initFavorites(){
+      const fav = JSON.parse(localStorage.getItem('favoritos') || '[]');
+      const resp = await fetch('./data/productos.json');
+      const productos = await resp.json();
+      const container = document.getElementById('favorites-container');
+      container.innerHTML = '';
+      const favoritos = productos.filter(p => fav.includes(p.id));
+
+      if(favoritos.length === 0) {
+        container.innerHTML = '<p style="text-align:center; grid-column:1/-1">No hay favoritos</p>';
+        return;
+      }
+
+      favoritos.forEach(p => {
+        const card = document.createElement('article');
+        card.className = 'product-card';
+        card.setAttribute('tabindex','0');
+        card.setAttribute('role','group');
+        card.setAttribute('aria-label', p.nombre + ' favorito');
+        card.setAttribute('data-aos','fade-up');
+        card.innerHTML = `
+          <div class="card-media">
+            <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='./img/placeholder.svg'">
+          </div>
+          <div class="product-info">
+            <h3>${p.nombre}</h3>
+            <p class="muted small">${p.categoria || ''}</p>
+            <p class="product-desc">${p.descripcion}</p>
+            <div class="product-meta">
+              <span class="product-price">$${p.precio.toLocaleString()}</span>
+              <div class="card-actions">
+                <button class="btn add-to-cart" data-id="${p.id}" aria-label="Agregar ${p.nombre} al carrito">Agregar</button>
+                <button class="btn remove-fav" data-id="${p.id}" aria-label="Quitar ${p.nombre} de favoritos">Quitar</button>
+                <button class="btn details-btn" data-id="${p.id}" aria-label="Ver detalles de ${p.nombre}">Detalles</button>
+              </div>
+            </div>
+          </div>`;
+
+        container.appendChild(card);
+        VanillaTilt.init(card, { max: 6, speed: 300, glare: true, 'max-glare': 0.06 });
+
+        const addBtn = card.querySelector('.add-to-cart');
+        const remBtn = card.querySelector('.remove-fav');
+        const detBtn = card.querySelector('.details-btn');
+
+        addBtn.addEventListener('click', () => addToCart(p));
+        remBtn.addEventListener('click', () => removeFavorite(p.id, card));
+        detBtn.addEventListener('click', () => showDetails(p));
+      });
+    }
+
+    function showToast(text){
+      if (window.Toastify) {
+        Toastify({ text, duration: 2000, gravity: 'top', position: 'right', backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--accent') || '#ff3c00' }).showToast();
+      }
+    }
+
+    function addToCart(product){
+      const cart = JSON.parse(localStorage.getItem('carrito') || '[]');
+      const found = cart.find(i => i.id === product.id);
+      const qtyInCart = found ? found.cantidad : 0;
+      if ((qtyInCart + 1) > (product.stock || 0)) {
+        Toastify({ text: `No hay stock suficiente (${product.stock} disponibles)`, duration: 2200, gravity: 'top', position: 'right', style: { background: 'linear-gradient(to right,#333,#555)' } }).showToast();
+        return;
+      }
+      if (found) found.cantidad = Math.min((found.cantidad||1)+1, 99);
+      else cart.push({ id: product.id, nombre: product.nombre, precio: product.precio, cantidad: 1, imagen: product.imagen });
+      localStorage.setItem('carrito', JSON.stringify(cart));
+      showToast('Añadido al carrito');
+    }
+
+    function removeFavorite(id, cardEl){
+      let fav = JSON.parse(localStorage.getItem('favoritos') || '[]');
+      fav = fav.filter(x => x !== id);
+      localStorage.setItem('favoritos', JSON.stringify(fav));
+      cardEl.classList.add('removed');
+      cardEl.addEventListener('transitionend', ()=> cardEl.remove(), { once: true });
+      showToast('Eliminado de favoritos');
+      // if no more favorites, show placeholder
+      setTimeout(()=>{
+        const remaining = document.querySelectorAll('#favorites-container .product-card, #favorites-container article');
+        if (remaining.length === 0) document.getElementById('favorites-container').innerHTML = '<p style="text-align:center; grid-column:1/-1">No hay favoritos</p>';
+      },300);
+    }
+
+    function showDetails(p){
+      Swal.fire({
+        title: p.nombre,
+        html: `<img src="${p.imagen}" alt="${p.nombre}" style="max-width:220px;margin-bottom:12px" onerror="this.src='./img/placeholder.svg'">` +
+              `<p class='muted small'>${p.categoria || ''}</p><p>${p.descripcion}</p><p><strong>Precio:</strong> $${p.precio.toLocaleString()}</p>`,
+        showCloseButton: true,
+        showCancelButton: false,
+        focusConfirm: false,
+        confirmButtonText: 'Cerrar'
+      });
+    }
+
+    document.getElementById('clear-favs').addEventListener('click', ()=>{
+      Swal.fire({ title: '¿Vaciar favoritos?', showCancelButton: true, confirmButtonText: 'Sí, vaciar' }).then(r=>{
+        if (r.isConfirmed){
+          localStorage.setItem('favoritos', JSON.stringify([]));
+          document.getElementById('favorites-container').innerHTML = '<p style="text-align:center; grid-column:1/-1">No hay favoritos</p>';
+          showToast('Favoritos vaciados');
+        }
+      });
+    });
+
+    initFavorites();
+  </script>
+</body>
+</html>

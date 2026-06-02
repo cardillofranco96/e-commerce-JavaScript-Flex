@@ -1,32 +1,42 @@
-# e-commerce - JavaScript Flex
+🔥 FlamaGamer — E-commerce de Componentes de PC
 
-Repositorio local del proyecto "FlamaGamer" — e-commerce de componentes PC, preparado para subir a GitHub.
+Proyecto final desarrollado para el curso JavaScript Flex de Coderhouse.
 
-Estructura básica:
+FlamaGamer es una tienda online simulada orientada al mundo gamer, donde se pueden explorar distintos componentes de PC, agregarlos a un carrito y realizar una compra simulada con una experiencia bastante cercana a un e-commerce real.
 
-- `index.html` — UI principal
-- `css/styles.css` — estilos (tema dark gamer)
-- `js/` — lógica del frontend
-- `data/` — JSON de productos y configurador
+🚀 Demo https://e-commerce-java-script-flex.vercel.app/
 
-Cómo subir a GitHub (ejecutar en terminal desde la carpeta del proyecto):
+⚙️ Tecnologías usadas
+HTML5
+CSS3 (estética dark gamer + animaciones)
+JavaScript ES6+
+Fetch API
+LocalStorage
+Librerías:
+SweetAlert2 → para confirmaciones y alerts
+Toastify → para notificaciones
 
-1. Crear repo remoto en GitHub (web) o usar `gh`:
+🧩 Funcionalidades principales
 
-   gh repo create USERNAME/e-commerce-JavaScript-Flex --public --source=. --remote=origin --push
+✔️ Render dinámico de productos desde un archivo JSON
+✔️ Filtros por categoría
+✔️ Buscador en tiempo real
+✔️ Sistema de carrito:
 
-2. Si creaste el repo en GitHub web, añade el remote y sube:
+Agregar productos
+Eliminar productos
+Vaciar carrito
+Cálculo automático del total
 
-   git remote add origin git@github.com:USERNAME/e-commerce-JavaScript-Flex.git
-   git branch -M main
-   git push -u origin main
+✔️ Persistencia con LocalStorage
+✔️ Simulación de compra con feedback visual
+✔️ Loader de carga
+✔️ Indicador de stock
 
-3. Alternativa HTTPS (si no usas SSH):
+💾 Datos
 
-   git remote add origin https://github.com/USERNAME/e-commerce-JavaScript-Flex.git
-   git push -u origin main
+Los productos se cargan desde un archivo externo (productos.json) utilizando fetch con async/await, simulando una base de datos.
 
-Notas:
-- Reemplaza `USERNAME` por tu usuario de GitHub.
-- Si usas GitHub CLI (`gh`) y no has autenticado, ejecuta `gh auth login` primero.
-# Comision 79580 - Pre Entrega 3 Flama Gamer
+🧑‍💻 Autor
+
+Franco Cardillo
